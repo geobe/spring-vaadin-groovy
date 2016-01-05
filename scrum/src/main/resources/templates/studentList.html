@@ -1,0 +1,24 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/webjars/bootstrap/3.3.2/css/bootstrap.min.css}"/>
+    <title>Student List</title>
+</head>
+<body>
+<h2>Students</h2>
+<div th:unless="${#lists.isEmpty(students)}">
+    <dl th:each="student : ${students}">
+        <dt>
+            <span th:text="${student.firstName}">Vorname</span>
+            <span th:text="${student.lastName}">Nachname</span>
+            <span th:text="${student.toGroup().one.name}">Gruppe</span>
+            <span th:text="${student.toGroup().one.immatriculation}">Immatrikulation</span>
+        </dt>
+    </dl>
+</div>
+<div th:if="${#lists.isEmpty(students)}">
+    No Students, perhaps Lions?
+</div>
+
+</body>
+</html>

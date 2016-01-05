@@ -1,0 +1,15 @@
+// svg
+plugins {
+    id 'groovy'
+	id 'idea'
+}
+
+allprojects {
+    group 'de.geobe.util'
+    version '0.1.0-SNAPSHOT'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.7'
+}
+

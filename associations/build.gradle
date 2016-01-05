@@ -1,0 +1,9 @@
+// associations
+plugins {
+    id 'java'
+	id 'idea'
+}
+
+dependencies {
+//    testCompile group: 'junit', name: 'junit', version: '4.11'
+}

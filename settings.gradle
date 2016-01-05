@@ -1,0 +1,5 @@
+rootProject.name = 'svg'
+include 'associations'
+include 'vaadin-builder'
+include 'scrum'
+
