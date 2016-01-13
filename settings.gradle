@@ -1,4 +1,4 @@
-rootProject.name = 'svg'
+//rootProject.name = 'spring-vaadin-groovy'
 include 'associations'
 include 'vaadin-builder'
 include 'scrum'

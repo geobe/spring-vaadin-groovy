@@ -5,9 +5,11 @@ import com.vaadin.spring.annotation.SpringComponent
 import com.vaadin.spring.annotation.UIScope
 import com.vaadin.ui.Button
 import com.vaadin.ui.Component
+import com.vaadin.ui.Notification
 import com.vaadin.ui.TextField
 import com.vaadin.ui.themes.Reindeer
 import de.fh_zwickau.pti.geobe.dto.ProjectDto
+import de.fh_zwickau.pti.geobe.service.IAuthorizationService
 import de.fh_zwickau.pti.geobe.service.ProjectService
 import de.fh_zwickau.pti.geobe.util.view.VaadinSelectionListener
 import de.fh_zwickau.pti.geobe.util.view.VaadinTreeRootChangeListener
@@ -41,6 +43,8 @@ class ProjectTab extends TabBase implements VaadinSelectionListener,
     private ProjectService projectService
     @Autowired
     private ProjectTree projectTree
+    @Autowired
+    private IAuthorizationService authorizationService
 
     @Override
     Component build() {
@@ -53,9 +57,11 @@ class ProjectTab extends TabBase implements VaadinSelectionListener,
             "$C.hlayout"([uikey       : 'buttonfield', spacing: true,
                           gridPosition: [0, 3, 1, 3]]) {
                 "$F.button"('New', [uikey         : 'newbutton',
+                                    visible       : authorizationService.hasRole('ROLE_ADMIN'),
                                     disableOnClick: true,
                                     clickListener : { sm.execute(Event.Create) }])
                 "$F.button"('Edit', [uikey         : 'editbutton',
+                                     visible       : authorizationService.hasRole('ROLE_ADMIN'),
                                      disableOnClick: true,
                                      clickListener : { sm.execute(Event.Edit) }])
                 "$F.button"('Cancel', [uikey         : 'cancelbutton',
@@ -114,6 +120,19 @@ class ProjectTab extends TabBase implements VaadinSelectionListener,
     protected getMatchForNewItem() {
         [type: ProjectTree.PROJECT_TYPE,
          id  : currentDto.id]
+    }
+
+    @Override
+    protected createemptymode() {
+        authorizationService.roles
+        def user = authorizationService.user
+        if (authorizationService.hasRole('ROLE_ADMIN')) {
+            super.createemptymode()
+        } else {
+            Notification.show("Sorry, you don't have the rights to do that.");
+            newButton.enabled = true
+            sm.currentState
+        }
     }
 
     /** prepare EMPTY state */

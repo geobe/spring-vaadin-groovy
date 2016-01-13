@@ -1,14 +1,17 @@
 package de.fh_zwickau.pti.geobe.view
 
 import com.vaadin.annotations.Theme
+import com.vaadin.server.ErrorEvent
 import com.vaadin.server.VaadinRequest
 import com.vaadin.spring.annotation.SpringUI
 import com.vaadin.ui.Component
+import com.vaadin.ui.Notification
 import com.vaadin.ui.TabSheet
 import com.vaadin.ui.UI
 import de.fh_zwickau.pti.geobe.util.view.VaadinSelectionKeyListener
 import de.geobe.util.vaadin.VaadinBuilder
 import org.springframework.beans.factory.annotation.Autowired
+import org.vaadin.spring.security.util.SecurityExceptionUtils
 
 import static VaadinBuilder.C
 import static VaadinBuilder.F
@@ -37,8 +40,10 @@ class ScrumView extends UI implements VaadinSelectionKeyListener {
 
     @Override
     protected void init(VaadinRequest request) {
+        page.title = 'spring-vaadin-groovy demo'
         setContent(initBuilder())
         initComponents()
+        errorHandler = { handleError(it) }
     }
 
     /**
@@ -74,6 +79,15 @@ class ScrumView extends UI implements VaadinSelectionKeyListener {
         sprintTab.init()
         taskTab.init()
         projectTree.selectionModel.addKeyListener(this)
+    }
+
+    private void handleError(def event){
+        if (SecurityExceptionUtils.isAccessDeniedException(event.getThrowable())) {
+            Notification.show("Sorry, you don't have access to do that.");
+        } else {
+            Notification.show("Something went wrong: $event");
+        }
+
     }
 /**
  * is fired when an entry of a selection component was selected

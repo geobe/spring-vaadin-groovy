@@ -37,7 +37,6 @@ class HelloBuilder2 extends UI {
         setContent(initBuilder())
     }
 
-
     /**
      * Aufbau des Vaadin Komponentenbaums<br>
      *     "Äste" müssen vor dem "Stamm" angelegt und mit subtree hinzugefügt werden
@@ -47,20 +46,20 @@ class HelloBuilder2 extends UI {
         vaadin = new VaadinBuilder()
         subwin = new VaadinBuilder()
 
-        Component root = vaadin."$C.hlayout" ('toplayout') {
+        Component root = vaadin."$C.hlayout"('toplayout') {
             "$F.menubar"('menu', [uikey: 'menu']) {
 
-                "$F.menuitem"('item1', [uikey: 'i1', command: {show(it)}])
-                "$F.menuitem"('item2', [uikey: 'i2', command: {show(it)}]) {
-"$F.menuitem"('item2.1', [uikey: 'i2.1', command: {show(it)}])
-"$F.menuitem"('item2.2', [uikey: 'i2.2', command: {show(it)}])
-}
-}
-}
-root
-}
+                "$F.menuitem"('item1', [uikey: 'i1', command: { show(it) }])
+                "$F.menuitem"('item2', [uikey: 'i2', command: { show(it) }]) {
+                    "$F.menuitem"('item2.1', [uikey: 'i2.1', command: { show(it) }])
+                    "$F.menuitem"('item2.2', [uikey: 'i2.2', command: { show(it) }])
+                }
+            }
+        }
+        root
+    }
 
-def show(MenuItem item) {
-    Notification.show("clicked on ${item.text}", Notification.Type.HUMANIZED_MESSAGE)
-}
+    def show(MenuItem item) {
+        Notification.show("clicked on ${item.text}", Notification.Type.HUMANIZED_MESSAGE)
+    }
 }

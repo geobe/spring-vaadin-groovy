@@ -12,6 +12,7 @@ import de.fh_zwickau.pti.geobe.repository.SprintRepository
 import de.fh_zwickau.pti.geobe.repository.TaskRepository
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.stereotype.Service
 
 import javax.transaction.Transactional
@@ -65,6 +66,7 @@ class ProjectService {
         makeQFull(p)
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ProjectDto.QFull createOrUpdateProject(CSet command) {
         Project project
         if (command.id) {

@@ -99,8 +99,10 @@ class VaadinBuilder extends BuilderSupport {
                         p.addComponent(c, gridPosition[0], gridPosition[1])
                 } else {
                     p.addComponent(c)
-                    if (p instanceof AbstractOrderedLayout && alignment)
+                    if (p instanceof AbstractOrderedLayout && alignment) {
+                        log.debug('setting alignment')
                         p.setComponentAlignment(c, alignment)
+                    }
                 }
             }
         } else if (parent instanceof AbstractSingleComponentContainer) {
