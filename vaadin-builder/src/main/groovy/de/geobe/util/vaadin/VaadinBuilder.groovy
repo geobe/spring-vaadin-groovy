@@ -345,6 +345,7 @@ class VaadinBuilder extends BuilderSupport {
         containers << [formlayout: 'com.vaadin.ui.FormLayout']
         containers << [hlayout: 'com.vaadin.ui.HorizontalLayout']
         containers << [vlayout: 'com.vaadin.ui.VerticalLayout']
+        containers << [csslayout: 'com.vaadin.ui.CssLayout']
 //        containers << [customlayout:CustomLayout']
 //        containers << [customcomponent:CustomComponent']
     }

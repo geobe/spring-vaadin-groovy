@@ -4,6 +4,7 @@ import com.vaadin.annotations.Theme
 import com.vaadin.data.Item
 import com.vaadin.event.ShortcutAction
 import com.vaadin.server.VaadinRequest
+import com.vaadin.shared.ui.label.ContentMode
 import com.vaadin.spring.annotation.SpringUI
 import com.vaadin.ui.Alignment
 import com.vaadin.ui.Button
@@ -148,18 +149,27 @@ was dann passiert. '''), 0]
             addRow(table, v)
         }
         table.valueChange(new Field.ValueChangeEvent(table))
-        label.value = '''Die 10 häufigsten Aussagen, die man von einem klingonischen Softwareentwickler hört
-
-"Spezifikationen sind für die Schwachen und Ängstlichen."
-"Einrückungen im Code?! Ich zeige Dir wie man einrückt wenn ich Deinen Schädel einrücke."
-"Was soll das Gerede mit der `Freigabe´? Klingonen erstellen für ihre Software keine `Freigabe´. Wir lassen die Software aus ihrem Käfig, damit sie eine blutige Spur von Designern und Qualitätsprüfern hinter sich herzieht."
-"Klingonische Funktionsaufrufe haben keine `Parameter´ - sie haben `Argumente´ -wage nicht zu widersprechen."
-"Debugging? Klingonen debuggen nicht. Unsere Software ist nicht dazu gedacht, die Schwachen zu verhätscheln."
-"Ich habe die Abteilung vom technischen Qualitätsmanagement in einem Bat-Leth Wettkampf besiegt. Sie werden uns nie wieder belästigen."
-"Ein ECHTER klingonischer Programmierer kommentiert seinen Code nicht!"
-"Mit dem Entwurf dieser Anforderungsliste hast Du die Ehre meiner Familie beleidigt. Mache Dich bereit zu sterben!"
-"Du stellst den Sinn meines Codes in Frage? Ich sollte Dich auf der Stelle töten, gerade so wie Du jetzt dastehst!"
-"Unsere Nutzer werden Furcht und Achtung vor unserer Software haben. Laßt die Software los! Laßt sie los, auf daß die Nutzer wie die Hunde fliehen, die sie sind!"
+        label.setContentMode(ContentMode.HTML)
+        label.value = '''<h2>Interkulturelle Softwareentwicklung</h2>
+<b>Die 10 häufigsten Aussagen, die man von einem klingonischen Softwareentwickler hört</b><br/>
+"Spezifikationen sind für die Schwachen und Ängstlichen."<br/>
+"Einrückungen im Code?! Ich zeige Dir wie man einrückt wenn ich Deinen Schädel einrücke."<br/>
+"Was soll das Gerede mit der `Freigabe´? Klingonen erstellen für ihre Software keine `Freigabe´.
+ Wir lassen die Software aus ihrem Käfig, damit sie eine blutige Spur von Designern und
+ Qualitätsprüfern hinter sich herzieht."<br/>
+"Klingonische Funktionsaufrufe haben keine `Parameter´ - sie haben `Argumente´ - wage
+ nicht zu widersprechen."<br/>
+"Debugging? Klingonen debuggen nicht. Unsere Software ist nicht dazu gedacht,
+ die Schwachen zu verhätscheln."<br/>
+"Ich habe die Abteilung vom technischen Qualitätsmanagement in einem Bat-Leth Wettkampf besiegt.
+ Sie werden uns nie wieder belästigen."<br/>
+"Ein ECHTER klingonischer Programmierer kommentiert seinen Code nicht!"<br/>
+"Mit dem Entwurf dieser Anforderungsliste hast Du die Ehre meiner Familie beleidigt.
+ Mache Dich bereit zu sterben!"<br/>
+"Du stellst den Sinn meines Codes in Frage? Ich sollte Dich auf der Stelle töten,
+ gerade so wie Du jetzt dastehst!"<br/>
+"Unsere Nutzer werden Furcht und Achtung vor unserer Software haben.<br/>
+ Laßt die Software los! Laßt sie los, auf daß die Nutzer wie die Hunde fliehen, die sie sind!"
 '''
     }
 
@@ -186,6 +196,9 @@ was dann passiert. '''), 0]
     private addRow(Table table, List cells) {
         def cols = ['text', 'votes', 'button']
         def itemId = table.addItem()
+        // to better identify table rows, you could also use the 2nd version of addItem and
+        // use the entity ID as itemID
+//        table.addItem(newId)
         // Stylable wrapper for the cell content
         CssLayout content = new CssLayout() {
             @Override
@@ -194,10 +207,10 @@ was dann passiert. '''), 0]
             }
         }
         content.addComponent(cells[0])
-         Item row = table.getItem(itemId)
+        Item row = table.getItem(itemId)
         row.getItemProperty(cols[0]).setValue(content)
         row.getItemProperty(cols[1]).setValue(cells[1])
-        Button button = new Button('kommentieren')
+        Button button = new Button('Antwort')
         button.addClickListener { insertBehind(table, itemId, 1) }
         row.getItemProperty(cols[2]).setValue(button)
         itemId
@@ -206,9 +219,12 @@ was dann passiert. '''), 0]
     private insertBehind(Table table, def previousItemId, int indent) {
         def cols = ['text', 'votes', 'button']
         def itemId = table.addItemAfter(previousItemId)
+        // to better identify table rows, you could also use the 2nd version of addItemAfter and
+        // use the entity ID as itemID
+//        table.addItemAfter(previousId, newId)
         Item row = table.getItem(itemId)
-        Label label = new Label("""Dies ist ein Kommentar der Ebene $indent zu einem Kommentar.
-Mit etwas mehr Aufwand kann man ihn auch einrücken.""")
+        Label label = new Label("Dies ist ein Kommentar der Ebene $indent zu einem Kommentar." +
+                'Mit etwas mehr Aufwand kann man ihn auch einrücken.')
         // Stylable wrapper for the cell content
         CssLayout content = new CssLayout() {
             @Override
@@ -217,7 +233,7 @@ Mit etwas mehr Aufwand kann man ihn auch einrücken.""")
             }
         }
         content.addComponent(label)
-        Button button = new Button('kommentieren')
+        Button button = new Button('Antwort')
         button.addClickListener { insertBehind(table, itemId, indent + 1) }
         row.getItemProperty(cols[0]).setValue(content)
         row.getItemProperty(cols[1]).setValue(0)
