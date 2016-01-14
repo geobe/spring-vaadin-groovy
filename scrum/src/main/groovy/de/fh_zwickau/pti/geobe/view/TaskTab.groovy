@@ -101,9 +101,8 @@ class TaskTab extends TabBase
         // build dialog window
         dialog.build()
         // build state machine
-        sm = new TabViewStateMachine(TabViewStateMachine.State.SUBTAB)
+        sm = new TabViewStateMachine(TabViewStateMachine.State.SUBTAB, 'TskTab')
         configureSm()
-        sm.smId = 'TskTab'
         sm.execute(Event.Init)
     }
 

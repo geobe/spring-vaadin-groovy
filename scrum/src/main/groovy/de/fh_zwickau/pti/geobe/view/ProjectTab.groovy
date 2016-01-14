@@ -89,9 +89,8 @@ class ProjectTab extends TabBase implements VaadinSelectionListener,
         projectTree.selectionModel.addListenerForKey(this, 'Project')
         projectTree.selectionModel.addRootChangeListener(this)
         // build state machine
-        sm = new TabViewStateMachine(TabViewStateMachine.State.TOPTAB)
+        sm = new TabViewStateMachine(TabViewStateMachine.State.TOPTAB, 'PrjTab')
         configureSm()
-        sm.smId = 'PrjTab'
         sm.execute(Event.Init)
     }
 
@@ -124,7 +123,7 @@ class ProjectTab extends TabBase implements VaadinSelectionListener,
 
     @Override
     protected createemptymode() {
-        authorizationService.roles
+//        authorizationService.roles
         def user = authorizationService.user
         if (authorizationService.hasRole('ROLE_ADMIN')) {
             super.createemptymode()

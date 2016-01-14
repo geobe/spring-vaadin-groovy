@@ -116,11 +116,10 @@ class TabViewStateMachine {
         sm.trix(st, ev)
     }
 
-    void setSmId(String id) { sm.smId = id }
-
-    void addAction(State from, State to, Event ev) {
+    void addTransition(State from, State to, Event ev) {
         sm.addTransition(from, to, ev) {
-            onTransition[sm.trix(from, ev)]?.call()
+            onExit[(from)]?.call()
+            onTransition[trix(from, ev)]?.call()
             onEntry[(to)]?.call()
         }
     }
@@ -129,26 +128,25 @@ class TabViewStateMachine {
      * Build a state machine to control dialog behaviour
      */
     private void buildDialogSM() {
-        addAction(State.SUBTAB, State.INIT, Event.Init)
-        addAction(State.INIT, State.SHOW, Event.Select)
-        addAction(State.INIT, State.EMPTY, Event.Root)
-        addAction(State.TOPTAB, State.EMPTY, Event.Init)
-        addAction(State.EMPTY, State.EMPTY, Event.Root)
-        addAction(State.EMPTY, State.CREATEEMPTY, Event.Create)
-        addAction(State.EMPTY, State.SHOW, Event.Select)
-        addAction(State.CREATEEMPTY, State.EMPTY, Event.Cancel)
-        addAction(State.CREATEEMPTY, State.SHOW, Event.Save)
-        addAction(State.SHOW, State.EDIT, Event.Edit)
-        addAction(State.SHOW, State.CREATE, Event.Create)
-        addAction(State.SHOW, State.SHOW, Event.Select)
-        addAction(State.SHOW, State.EMPTY, Event.Root)
-        addAction(State.EDIT, State.SHOW, Event.Save)
-        addAction(State.EDIT, State.SHOW, Event.Cancel)
-        addAction(State.CREATE, State.SHOW, Event.Save)
-        addAction(State.CREATE, State.SHOW, Event.Cancel)
-        addAction(State.SHOW, State.DIALOG, Event.Dialog)
-        addAction(State.DIALOG, State.SHOW, Event.Save)
-        addAction(State.DIALOG, State.SHOW, Event.Cancel)
+        addTransition(State.SUBTAB, State.INIT, Event.Init)
+        addTransition(State.INIT, State.SHOW, Event.Select)
+        addTransition(State.INIT, State.EMPTY, Event.Root)
+        addTransition(State.TOPTAB, State.EMPTY, Event.Init)
+        addTransition(State.EMPTY, State.EMPTY, Event.Root)
+        addTransition(State.EMPTY, State.CREATEEMPTY, Event.Create)
+        addTransition(State.EMPTY, State.SHOW, Event.Select)
+        addTransition(State.CREATEEMPTY, State.EMPTY, Event.Cancel)
+        addTransition(State.CREATEEMPTY, State.SHOW, Event.Save)
+        addTransition(State.SHOW, State.EDIT, Event.Edit)
+        addTransition(State.SHOW, State.CREATE, Event.Create)
+        addTransition(State.SHOW, State.SHOW, Event.Select)
+        addTransition(State.SHOW, State.EMPTY, Event.Root)
+        addTransition(State.EDIT, State.SHOW, Event.Save)
+        addTransition(State.EDIT, State.SHOW, Event.Cancel)
+        addTransition(State.CREATE, State.SHOW, Event.Save)
+        addTransition(State.CREATE, State.SHOW, Event.Cancel)
+        addTransition(State.SHOW, State.DIALOG, Event.Dialog)
+        addTransition(State.DIALOG, State.SHOW, Event.Save)
+        addTransition(State.DIALOG, State.SHOW, Event.Cancel)
     }
-
 }

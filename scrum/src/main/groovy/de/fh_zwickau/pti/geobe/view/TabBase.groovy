@@ -5,13 +5,13 @@ import de.geobe.util.vaadin.TabViewStateMachine
 import org.springframework.beans.factory.annotation.Autowired
 
 /**
+ * implement basic methods for tab views
  * Created by georg beier on 09.12.2015.
  */
 abstract class TabBase extends SubTree {
     protected TabViewStateMachine sm
     @Autowired
-    protected
-    ProjectTree projectTree
+    protected ProjectTree projectTree
 
     protected configureSm() {
         sm.onEntry[TabViewStateMachine.State.INIT] = {
@@ -67,11 +67,9 @@ abstract class TabBase extends SubTree {
         }
         sm.onTransition[sm.trix(TabViewStateMachine.State.DIALOG, TabViewStateMachine.Event.Cancel)] = {
             cancelDialog()
-//            setFieldValues()
-//            projectTree.onEditItemDone(currentItemId,  currentCaption)
         }
-
     }
+
     /** item id of currently selected object from vaadin selection component */
     protected abstract getCurrentItemId()
     /** value for the domain object id of currently displayed object */

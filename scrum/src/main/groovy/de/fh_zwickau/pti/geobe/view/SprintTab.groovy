@@ -87,9 +87,8 @@ class SprintTab extends TabBase
         projectTree.selectionModel.addListenerForKey(this, 'Sprint')
         projectTree.selectionModel.addRootChangeListener(this)
         // build state machine
-        sm = new TabViewStateMachine(TabViewStateMachine.State.SUBTAB)
+        sm = new TabViewStateMachine(TabViewStateMachine.State.SUBTAB, 'SprTab')
         configureSm()
-        sm.smId = 'SprTab'
         sm.execute(Event.Init)
     }
 
