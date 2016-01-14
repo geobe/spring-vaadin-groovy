@@ -106,21 +106,21 @@ class TabViewStateMachine {
     }
 
     /**
-     * calculate a unique transition index from current state and triggering event
+     * delegate calculating a unique transition index from current state
+     * and triggering event to DialogStateMachine
      * @param st current state
      * @param ev event triggering transition
      * @return a unique Integer computed from state and event
      */
     public Integer trix(State st, Event ev) {
-        def t = st.ordinal() + (ev.ordinal() << 10)
-        t
+        sm.trix(st, ev)
     }
 
     void setSmId(String id) { sm.smId = id }
 
     void addAction(State from, State to, Event ev) {
-        sm.addAction(from, to, ev) {
-            onTransition[trix(from, ev)]?.call()
+        sm.addTransition(from, to, ev) {
+            onTransition[sm.trix(from, ev)]?.call()
             onEntry[(to)]?.call()
         }
     }

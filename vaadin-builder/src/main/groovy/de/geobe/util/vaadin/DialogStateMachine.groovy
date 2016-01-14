@@ -5,13 +5,18 @@ import groovy.util.logging.Slf4j
 /**
  * Implementation of a simple state machine
  * Created by georg beier on 01.12.2015.
+ * @param S enumertion Type for States
+ * @param E enumeration type for events
  */
 @Slf4j
 class DialogStateMachine<S extends Enum, E extends Enum> {
-
-    private Map<S, Map<E, Closure>> stateMachine = new HashMap<>()
-    private Map<S, Map<E, S>> nextState = new HashMap<>()
+    /** map for actions, indexed by combination of currentState and event */
+    private Map<Integer,Closure> stateMachine = new HashMap<>()
+    /** map for next states, indexed by combination of currentState and event */
+    private Map<Integer, S> nextState = new HashMap<>()
+    /** store current state */
     private S currentState
+    /** for logging info to identify state machine instance */
     private String smid
 
     def getCurrentState() { currentState }
@@ -19,9 +24,9 @@ class DialogStateMachine<S extends Enum, E extends Enum> {
     def setSmId(String id) { smid = id }
 
     /**
-     * create instance with initial state
-     * @param start
-     * @param id
+     * create instance with initial fromState
+     * @param start initial fromState
+     * @param id identifying string for logging and debug
      */
     DialogStateMachine(S start, String id = 'default') {
         currentState = start
@@ -29,56 +34,59 @@ class DialogStateMachine<S extends Enum, E extends Enum> {
     }
 
     /**
-     * add an action to this state machine
-     * @param state the current state
-     * @param nextState the state to go after executing the action.
+     * add an action to this fromState machine
+     * @param fromState the current state
+     * @param toState the state to go after executing the action.
      *        Can be overwritten by the action if it is returning an Enum<S> value
-     * @param event event that triggers the state machine
-     * @param action closure that is executed for combination of state and event
+     * @param event event that triggers the fromState machine
+     * @param action closure that is executed for combination of fromState and event
      */
-    void addAction(S state, S next, E event, Closure action) {
-        Map<E, Closure> actions
-        Map<E, S> nextStates
-        if (stateMachine[state]) {
-            actions = stateMachine[state]
-            nextStates = nextState[state]
-        } else {
-            actions = new HashMap<>()
-            stateMachine[state] = actions
-            nextStates = new HashMap<>()
-            nextState[state] = nextStates
-        }
-        actions[event] = action
-        if (next)
-            nextStates[event] = next
+    void addTransition(S fromState, S toState, E event, Closure action) {
+        Integer index = trix(fromState, event)
+        stateMachine[index] = action
+        if(toState)
+            nextState[index] = toState
     }
 
     /**
      * execute closure that is identified by currentState and event.
      * After execution, statemachine will be
-     * <ul><li>either in the following state as defined in addAction method,
+     * <ul><li>in the following state as defined in addTransition method,
      * if closure returns no object of type S</li>
-     * <li>or in the state returned by the closure.</li></ul>
+     * <li>in the state returned by the closure.</li>
+     * <li>If no following state is defined, statemachine will stay in currentState.</li></ul>
      * @param event triggering event
      * @param params optional parameter to closure.
      *        Caution, closure will receive an Object[] Array
      * @return the current state after execution
      */
     S execute(E event, Serializable... params) {
-        if (stateMachine[currentState][event]) {
-            Closure action = stateMachine[currentState][event]
+        Integer index = trix(currentState, event)
+        if (stateMachine[index]) {
+            Closure action = stateMachine[index]
             def result = action(params)
             def next
             if (result instanceof S) {
                 next = result
             } else {
-                next = (nextState[currentState][event] ?: currentState)
+                next = (nextState[index] ?: currentState)
             }
             log.info("Transition $smid: $currentState--$event->$next")
             currentState = next
         } else {
-            log.info("ignored event $event in state $currentState")
+            log.info("ignored event $event in fromState $currentState")
         }
         currentState
+    }
+
+    /**
+     * calculate a unique transition index from current state and triggering event
+     * @param st current state
+     * @param ev event triggering transition
+     * @return a unique Integer computed from state and event
+     */
+    public Integer trix(S st, E ev) {
+        def t = st.ordinal() + (ev.ordinal() << 12)
+        t
     }
 }
