@@ -36,9 +36,13 @@ class StartupService implements IStartupService {
             log.info("initializing data at ${LocalDateTime.now()}")
             Project p = new Project([name: 'Projekt Küche', budget: 1000])
             p.backlog.add(new Subtask(tag: 'Tee kochen', description: 'Kanne zum Wasser!', estimate: 42))
+            CompoundTask hausarbeit = new CompoundTask(tag: 'Hausarbeit', description: 'Immer viel zu tun', estimate: 4711)
+            hausarbeit.project.add(p)
+            p.backlog.add(hausarbeit)
             ['backen', 'kochen', 'abwaschen'].forEach {
                 Task t = new CompoundTask([description: "Wir sollen $it", tag: it])
-                t.project.add(p)
+                t.supertask.add(hausarbeit)
+//                t.project.add(p)
                 cpl++
                 ['dies', 'das', 'etwas anderes', 'nichts davon'].each { tag ->
                     def sub = new Subtask([description: "und dann noch $tag",
