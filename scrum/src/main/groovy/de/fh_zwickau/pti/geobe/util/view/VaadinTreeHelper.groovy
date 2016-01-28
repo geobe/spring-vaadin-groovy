@@ -39,20 +39,23 @@ class VaadinTreeHelper {
     }
 
     /**
-     * build a vaadin tree for a given tree data structure. To ease the work with tree selections,
-     * id's for the vaadin tree node consist of single element maps with a key describing the kind
-     * of object represented by the node and a value, typically a database key or other unique
-     * value used to lookup the domain instance represented by this tree node
+     * build a vaadin tree for a given tree data structure. To ease the work with tree
+     * selections, id's for the vaadin tree node consist of single element maps with a
+     * key describing the kind of object represented by the node and a value, typically
+     * a database key or other unique value used to lookup the domain instance
+     * represented by this tree node
      *
      * @param node an object (e.g. a dto) that should be represented by the Vaadin tree node
      * @param parentId id of the Vaadin tree parent node
      * @param idPrefix identifies kind of node, e.g. domain class name of underlying object
      * @param idField name of the field in the node object that holds the key value
      * @param captionField name of the field in the node object that holds the caption
-     * @param childrenField name of the field in the node object that holds the list of child objects
+     * @param childrenField name of the field in the node object that holds the list of
+     *      child objects
      * @return
      */
-    public descend(Object node, Object parentId, String idPrefix, String idField, String captionField, String childrenField) {
+    public descend(Object node, Object parentId, String idPrefix, String idField,
+                   String captionField, String childrenField) {
         def nodeId = [type: idPrefix, id: node."$idField"]
         addNode(nodeId, parentId, node."$captionField", !node."$childrenField".isEmpty())
         node."$childrenField".each { subnode ->
@@ -85,8 +88,9 @@ class VaadinTreeHelper {
     }
 
     /**
-     * try to identify previously expanded nodes from List and reexpand them after a tree reload.
-     * As node id objects differ after reload, this needs a comparison in groovy
+     * try to identify previously expanded nodes from List and reexpand them after
+     * a tree reload. As node id objects differ after reload, this needs a
+     * comparison in groovy
      *
      * @param exp the list generated before tree reload
      */
@@ -99,16 +103,15 @@ class VaadinTreeHelper {
     }
 
     /**
-     * find matching itemId in the tree by comparing each id of type Map with the match parameter. This is necessary
-     * because Tree uses Identity and not Equality to compare ids. So you cannot directly look for an equal but
-     * not identical key
-     * @param
-     *      match a map that looks like the id we are looking for
-     * @return
-     *      the found tree id or null, if none
+     * find matching itemId in the tree by comparing each id of type Map with the
+     * match parameter. This is necessary because Tree uses Identity and not Equality
+     * to compare ids. So you cannot directly look for an equal but not identical key
+     *
+     * @param match a map that looks like the id we are looking for
+     * @return the found tree id or null, if none
      */
     public findMatchingId(Map match) {
-        tree.itemIds.find{ id ->
+        tree.itemIds.find { id ->
             id instanceof Map && match.keySet().every { key ->
                 id[key] == match[key]
             }

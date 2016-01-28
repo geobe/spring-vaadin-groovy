@@ -3,8 +3,8 @@ package de.fh_zwickau.pti.geobe.util.view
 /**
  * Default implementation and delegate for VaadinSelectionModels Listeners.<br>
  *     Supports different kinds of objects within one selection component, e.g. a Tree.
- *     We suppose that the relevant item ids consíst of a Map with a key (e.g. a class name)
- *     and a value (e.g. an object id from the persistamt storage).
+ *     We suppose that the relevant item ids consist of a Map with a key (e.g. a class name)
+ *     and a value (e.g. an object id from the persistent storage).
  *     ListenersForKey subscribe for a certain key and are notified with the value when an
  *     item with "their" key is selected. KeyListeners get notified with the key when any
  *     item with a Map-id is selected.<br>
