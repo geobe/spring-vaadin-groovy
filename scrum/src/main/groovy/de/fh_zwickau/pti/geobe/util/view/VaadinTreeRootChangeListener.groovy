@@ -4,7 +4,7 @@ package de.fh_zwickau.pti.geobe.util.view
  * In working with multi rooted tree views, it might be interesting to be notified
  * when a branch with a different root element is selected
  *
- * Created by georg beier on 02.12.2015.
+ * @author georg beier
  */
 interface VaadinTreeRootChangeListener {
     /**

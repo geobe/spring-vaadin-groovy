@@ -43,7 +43,7 @@ import groovy.util.logging.Slf4j
  *        +---------+          +---------+     +----------+
  *
  * </code>
- *  Created by georg beier on 04.12.2015.
+ * @author georg beier
  */
 @Slf4j
 class TabViewStateMachine {

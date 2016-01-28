@@ -9,7 +9,7 @@ import javax.persistence.*
 
 /**
  *
- * Created by georg beier on 13.11.2015.
+ * @author georg beier
  */
 @Entity
 class Sprint {

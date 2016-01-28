@@ -7,8 +7,8 @@ package de.fh_zwickau.pti.geobe.util.view
  *     and a value (e.g. an object id from the persistamt storage).
  *     ListenersForKey subscribe for a certain key and are notified with the value when an
  *     item with "their" key is selected. KeyListeners get notified with the key when any
- *     item with a Map-id is selected.
- * Created by georg beier on 17.11.2015.
+ *     item with a Map-id is selected.<br>
+ * @author georg beier
  */
 class VaadinSelectionModel {
     private Map<String, Set<VaadinSelectionListener>> keySelectiveListeners = new LinkedHashMap<>()
@@ -30,7 +30,7 @@ class VaadinSelectionModel {
         anyKeyListeners.add(keyListener)
     }
 
-    public void removeAnyKeyListener(VaadinSelectionKeyListener keyListener) {
+    public void removeAnyKeyListener(VaadinSelectionListener keyListener) {
         anyKeyListeners.remove(keyListener)
     }
 
@@ -43,8 +43,8 @@ class VaadinSelectionModel {
     }
 
     public void notifyChange(Map<String, Serializable> rawEvent) {
-            keySelectiveListeners[rawEvent['type']].each { it.onItemSelected(rawEvent) }
-            anyKeyListeners.each { it.onItemSelected(rawEvent) }
+        keySelectiveListeners[rawEvent['type']].each { it.onItemSelected(rawEvent) }
+        anyKeyListeners.each { it.onItemSelected(rawEvent) }
     }
 
     public void notifyRootChange(Map<String, Serializable> rawEvent) {

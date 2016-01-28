@@ -18,7 +18,7 @@ import static VaadinBuilder.C
 import static VaadinBuilder.F
 
 /**
- * Created by georg beier on 17.12.2015.
+ * @author georg beier
  */
 @PrototypeScope
 @SpringComponent

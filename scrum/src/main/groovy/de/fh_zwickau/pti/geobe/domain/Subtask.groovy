@@ -4,7 +4,7 @@ import javax.persistence.Entity
 
 /**
  * a task that is not composed from subtasks
- * Created by georg beier on 16.11.2015.
+ * @author georg beier
  */
 @Entity
 class Subtask extends Task {

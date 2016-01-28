@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * The standard Spring repository interface
- * Created by georg beier on 13.11.2015.
+ * @author georg beier
  */
 public interface SprintRepository extends JpaRepository<Sprint, Long> {
     List<Sprint> findAllByOrderByStartDesc();

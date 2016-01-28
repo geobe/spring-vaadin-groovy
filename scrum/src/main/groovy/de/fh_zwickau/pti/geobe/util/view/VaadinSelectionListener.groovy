@@ -2,7 +2,7 @@ package de.fh_zwickau.pti.geobe.util.view
 
 /**
  * distribute Vaadin selection events
- * Created by georg beier on 17.11.2015.
+ * @author georg beier
  */
 interface VaadinSelectionListener {
     /**

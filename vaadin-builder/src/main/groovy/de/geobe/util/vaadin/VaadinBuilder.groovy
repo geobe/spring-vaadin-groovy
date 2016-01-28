@@ -5,8 +5,8 @@ import com.vaadin.ui.MenuBar.MenuItem
 import groovy.util.logging.Slf4j
 
 /**
- * Created by georg beier on 10.11.2015 based on Groovys great builder support.
  * Build a Vaadin Component tree including MenuBar menus
+ * @author georg beier
  */
 @Slf4j
 class VaadinBuilder extends BuilderSupport {

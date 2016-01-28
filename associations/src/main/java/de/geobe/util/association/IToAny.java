@@ -3,7 +3,7 @@ package de.geobe.util.association;
 import java.util.Collection;
 
 /**
- * Created by georg beier on 15.10.2015.
+ * @author georg beier
  * <p>
  * Interface zur Implementierung von zu-N und zu-1 Assoziationen
  */

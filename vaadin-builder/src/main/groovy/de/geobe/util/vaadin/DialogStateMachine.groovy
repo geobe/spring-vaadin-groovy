@@ -4,7 +4,7 @@ import groovy.util.logging.Slf4j
 
 /**
  * Implementation of a simple state machine
- * Created by georg beier on 01.12.2015.
+ * @author georg beier
  * @param S enumertion Type for States
  * @param E enumeration type for events
  */

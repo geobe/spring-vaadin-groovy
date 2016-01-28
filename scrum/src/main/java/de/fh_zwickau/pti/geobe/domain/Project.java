@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by georg beier on 09.11.2015.
+ * @author georg beier
  */
 @Entity
 public class Project {

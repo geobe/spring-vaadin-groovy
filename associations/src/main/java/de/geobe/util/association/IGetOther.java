@@ -1,7 +1,7 @@
 package de.geobe.util.association;
 
 /**
- * Created by georg beier on 15.10.2015.
+ * @author georg beier
  * Funktionales Interface, dass den Zugriff auf das andere Ende der Assoziation mit Lamda-Expression ermöglicht
  */
 @FunctionalInterface

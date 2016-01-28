@@ -18,7 +18,7 @@ import static de.geobe.util.vaadin.VaadinBuilder.F
 /**
  * Main selection component is this tree
  *
- * Created by georg beier on 17.11.2015.
+ * @author georg beier
  */
 @SpringComponent
 @UIScope

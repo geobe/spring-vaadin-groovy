@@ -5,7 +5,7 @@ import groovy.util.logging.Slf4j
 import spock.lang.Specification
 
 /**
- * Created by georg beier on 01.12.2015.
+ * @author georg beier
  */
 @Slf4j
 class StateMachineSpecification extends Specification {

@@ -10,7 +10,7 @@ import java.util.Set;
 
 /**
  * An abstract superclass for tasks
- * Created by georg beier on 16.11.2015.
+ * @author georg beier
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)

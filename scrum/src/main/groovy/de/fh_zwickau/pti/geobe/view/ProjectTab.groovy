@@ -23,7 +23,7 @@ import static de.geobe.util.vaadin.VaadinBuilder.F
 /**
  * show and edit projects in their own tab
  *
- * Created by georg beier on 16.11.2015.
+ * @author georg beier
  */
 @SpringComponent
 @UIScope

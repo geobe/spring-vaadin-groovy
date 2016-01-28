@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired
 
 /**
  * implement basic methods for tab views
- * Created by georg beier on 09.12.2015.
+ * @author georg beier
  */
 abstract class TabBase extends SubTree {
     protected TabViewStateMachine sm

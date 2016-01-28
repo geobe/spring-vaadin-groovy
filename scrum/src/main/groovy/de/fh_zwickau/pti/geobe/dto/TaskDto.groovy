@@ -1,7 +1,7 @@
 package de.fh_zwickau.pti.geobe.dto
 
 /**
- * Created by georg beier on 16.11.2015.
+ * @author georg beier
  */
 class TaskDto {
     public static class QList {

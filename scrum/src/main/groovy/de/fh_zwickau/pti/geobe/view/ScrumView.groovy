@@ -7,7 +7,7 @@ import com.vaadin.ui.Component
 import com.vaadin.ui.Notification
 import com.vaadin.ui.TabSheet
 import com.vaadin.ui.UI
-import de.fh_zwickau.pti.geobe.util.view.VaadinSelectionKeyListener
+
 import de.fh_zwickau.pti.geobe.util.view.VaadinSelectionListener
 import de.geobe.util.vaadin.VaadinBuilder
 import org.springframework.beans.factory.annotation.Autowired
@@ -18,7 +18,7 @@ import static VaadinBuilder.F
 
 /**
  * The main view class for Scrum UI
- * Created by georg beier on 16.11.2015.
+ * @author georg beier
  */
 @SpringUI(path = "")
 @Theme("valo")

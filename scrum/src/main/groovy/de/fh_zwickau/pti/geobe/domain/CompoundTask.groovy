@@ -11,7 +11,7 @@ import javax.persistence.Transient
 
 /**
  * a task that has subtasks
- * Created by georg beier on 16.11.2015.
+ * @author georg beier
  */
 @Entity
 public class CompoundTask extends Task {

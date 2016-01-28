@@ -8,7 +8,7 @@ import com.vaadin.ui.*
 @SpringUI(path = "groove")
 @Theme("valo")
 /**
- * Created by georg beier on 09.11.2015.
+ * @author georg beier
  */
 class GroovyHello extends UI {
     @Override

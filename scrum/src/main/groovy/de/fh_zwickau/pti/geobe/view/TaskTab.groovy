@@ -20,7 +20,7 @@ import static VaadinBuilder.F
 /**
  * editor tab for tasks
  *
- * Created by georg beier on 16.11.2015.
+ * @author georg beier
  */
 
 @SpringComponent

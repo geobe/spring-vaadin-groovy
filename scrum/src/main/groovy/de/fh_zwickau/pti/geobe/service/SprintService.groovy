@@ -18,7 +18,7 @@ import javax.transaction.Transactional
 
 /**
  * Facade class to access sprint entities
- * Created by georg beier on 16.11.2015.
+ * @author georg beier
  */
 @Slf4j
 @Service

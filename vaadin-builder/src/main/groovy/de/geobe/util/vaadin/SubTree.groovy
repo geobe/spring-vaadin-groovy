@@ -5,7 +5,7 @@ import com.vaadin.ui.UI
 
 /**
  * A base class for building Vaadin component subtrees with VaadinBuilder
- * Created by georg beier on 16.11.2015.
+ * @author georg beier
  */
 abstract class SubTree {
     /**

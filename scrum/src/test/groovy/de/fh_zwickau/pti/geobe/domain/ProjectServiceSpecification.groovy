@@ -15,7 +15,7 @@ import javax.transaction.Transactional
 
 /**
  *
- * Created by georg beier on 09.11.2015.
+ * @author georg beier
  */
 @SpringApplicationConfiguration(classes = GroovaaApplication)
 class ProjectServiceSpecification extends Specification {

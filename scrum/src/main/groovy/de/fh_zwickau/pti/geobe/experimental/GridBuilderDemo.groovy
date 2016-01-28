@@ -25,7 +25,7 @@ import static VaadinBuilder.C
 import static VaadinBuilder.F
 
 /**
- * Created by georg beier on 12.11.2015.
+ * @author georg beier
  * Beispiel 1
  */
 @Slf4j

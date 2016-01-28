@@ -5,7 +5,7 @@ import com.vaadin.ui.Tree
 /**
  * A set of utility methods to make work with Vaadin Tree component a bit easier
  * <br>
- * Created by georg beier on 24.11.2015.
+ * @author georg beier
  */
 class VaadinTreeHelper {
     private Tree tree

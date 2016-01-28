@@ -14,7 +14,7 @@ import javax.transaction.Transactional
 
 /**
  *
- * Created by georg beier on 09.11.2015.
+ * @author georg beier
  */
 @Slf4j
 @SpringApplicationConfiguration(classes = GroovaaApplication)

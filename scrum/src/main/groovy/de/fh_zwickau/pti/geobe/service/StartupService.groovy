@@ -13,7 +13,7 @@ import java.time.LocalDateTime
 
 /**
  *
- * Created by georg beier on 09.11.2015.
+ * @author georg beier
  */
 @Service
 @Slf4j

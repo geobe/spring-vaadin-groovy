@@ -9,7 +9,7 @@ import com.vaadin.ui.UI
 import de.geobe.util.vaadin.VaadinBuilder
 
 /**
- * Created by georg beier on 12.11.2015.
+ * @author georg beier
  * Beispiel 1
  */
 @SpringUI(path = "builddemo")

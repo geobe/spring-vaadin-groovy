@@ -8,7 +8,7 @@ import java.util.HashSet;
  * Implementiert den Zugriff auf die Assoziation und stellt sicher, dass bidirektionale
  * Assoziationen in beiden Richtungen konsistent gehalten werden
  * <p>
- * Created by georg beier on 15.10.2015.
+ * @author georg beier
  */
 public class ToMany<HERE, THERE> implements IToAny<THERE> {
     private IGet<Collection<THERE>> ownSide;

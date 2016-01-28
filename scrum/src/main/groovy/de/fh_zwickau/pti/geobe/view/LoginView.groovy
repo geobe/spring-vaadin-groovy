@@ -19,7 +19,7 @@ import static VaadinBuilder.F
 
 /**
  * a simple login page
- * Created by georg beier on 17.12.2015.
+ * @author georg beier
  */
 @SpringUI(path = 'login')
 @Theme(ValoTheme.THEME_NAME)

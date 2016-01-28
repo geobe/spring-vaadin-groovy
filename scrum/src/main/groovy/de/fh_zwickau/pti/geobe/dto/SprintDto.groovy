@@ -1,7 +1,7 @@
 package de.fh_zwickau.pti.geobe.dto
 
 /**
- * Created by georg beier on 16.11.2015.
+ * @author georg beier
  */
 class SprintDto {
     public static class QList {

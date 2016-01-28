@@ -11,7 +11,7 @@ package de.fh_zwickau.pti.geobe.repository;
 
 /**
  *
- * Created by georg beier on 09.11.2015.
+ * @author georg beier
  */
 public interface TaskRepository extends JpaRepository<Task, Long> {
     List<Task> findByProjectId(Long id);

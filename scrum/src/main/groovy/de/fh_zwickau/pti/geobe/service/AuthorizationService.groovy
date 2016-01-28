@@ -5,7 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
 
 /**
- * Created by georg beier on 07.01.2016.
+ * @author georg beier
  */
 @Service
 class AuthorizationService implements IAuthorizationService{

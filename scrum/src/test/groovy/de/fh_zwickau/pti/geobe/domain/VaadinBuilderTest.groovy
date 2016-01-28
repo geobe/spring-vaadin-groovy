@@ -10,7 +10,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
 
 /**
- * Created by georg beier on 10.11.2015.
+ * @author georg beier
  */
 @RunWith(SpringJUnit4ClassRunner)
 @SpringApplicationConfiguration(classes = GroovaaApplication)

@@ -6,7 +6,7 @@ import java.util.Collection;
 /**
  * Implementiert den Zugriff auf die Assoziation und stellt sicher, dass bidirektionale
  * Assoziationen in beiden Richtungen konsistent gehalten werden
- * Created by georg beier on 15.10.2015.
+ * @author georg beier
  */
 public class ToOne<HERE, THERE> implements IToAny<THERE> {
     private IGet<THERE> getOwn;
