@@ -3,11 +3,17 @@ package de.fh_zwickau.pti.geobe.util.view
 import com.vaadin.ui.Tree
 
 /**
+ * A set of utility methods to make work with Vaadin Tree component a bit easier
+ * <br>
  * Created by georg beier on 24.11.2015.
  */
 class VaadinTreeHelper {
     private Tree tree
 
+    /**
+     * A TreeHelper instance is bound to a Vaadin Tree
+     * @param aTree the Tree object that is supported by this instance
+     */
     public VaadinTreeHelper(Tree aTree) {
         tree = aTree
     }

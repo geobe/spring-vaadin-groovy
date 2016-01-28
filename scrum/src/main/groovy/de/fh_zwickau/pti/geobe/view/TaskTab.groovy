@@ -26,7 +26,8 @@ import static VaadinBuilder.F
 @SpringComponent
 @UIScope
 class TaskTab extends TabBase
-        implements VaadinSelectionListener, VaadinTreeRootChangeListener, Serializable {
+        implements VaadinSelectionListener, VaadinTreeRootChangeListener,
+                Serializable {
 
     public static final String TAG = 'tag'
     public static final String IS_SUPERTASK = 'isSupertask'
@@ -34,15 +35,18 @@ class TaskTab extends TabBase
     public static final String ESTIMATE = 'estimate'
     public static final String SPENT = 'spent'
     public static final String DESCRIPTION = 'description'
+
     private TextField tag, estimate, spent
     private TextArea description
     private CheckBox supertask, completed
     private Button newButton, editButton, saveButton, cancelButton, subtaskButton
+
     private Map<String, Serializable> currentItemId
     private Map<String, Serializable> currentTopItemId
     private TaskDto.QFull currentDto
     private UI ui
     private Component topComponent
+
     private SubtaskDialog dialog = new SubtaskDialog()
 
     @Autowired
@@ -53,7 +57,8 @@ class TaskTab extends TabBase
 
     @Override
     Component build() {
-        topComponent = vaadin."$C.vlayout"('Backlog', [spacing: true, margin: true]) {
+        topComponent = vaadin."$C.vlayout"('Backlog',
+                [spacing: true, margin: true]) {
             "$F.text"('Aufgabe', [uikey: TAG])
             "$C.hlayout"('Status', [spacing: true, margin: false]) {
                 "$F.checkbox"('übergeordnet', [uikey: IS_SUPERTASK])
@@ -62,19 +67,31 @@ class TaskTab extends TabBase
             "$F.text"('Schätzung', [uikey: ESTIMATE])
             "$F.text"('aktueller Verbrauch', [uikey: SPENT])
             "$F.textarea"('Beschreibung', [uikey: DESCRIPTION])
-            "$C.hlayout"([uikey: 'buttonfield', spacing: true, gridPosition: [0, 3, 1, 3]]) {
-                "$F.button"('New', [uikey        : 'newbutton', disableOnClick: true,
-                                    clickListener: { sm.execute(Event.Create) }])
-                "$F.button"('Edit', [uikey        : 'editbutton', disableOnClick: true,
-                                     clickListener: { sm.execute(Event.Edit) }])
-                "$F.button"('Subtask', [uikey        : 'subtaskbutton', disableOnClick: true, enabled: false,
-                                        clickListener: { sm.execute(Event.Dialog) }])
-                "$F.button"('Cancel', [uikey        : 'cancelbutton', disableOnClick: true, enabled: false,
-                                       clickListener: { sm.execute(Event.Cancel) }])
-                "$F.button"('Save', [uikey        : 'savebutton', disableOnClick: true, enabled: false,
-                                     clickShortcut: ShortcutAction.KeyCode.ENTER,
-                                     styleName    : Reindeer.BUTTON_DEFAULT,
-                                     clickListener: { sm.execute(Event.Save) }])
+            "$C.hlayout"([uikey       : 'buttonfield', spacing: true,
+                          gridPosition: [0, 3, 1, 3]]) {
+                "$F.button"('New',
+                        [uikey         : 'newbutton',
+                         disableOnClick: true,
+                         clickListener : { sm.execute(Event.Create) }])
+                "$F.button"('Edit',
+                        [uikey         : 'editbutton',
+                         disableOnClick: true,
+                         clickListener : { sm.execute(Event.Edit) }])
+                "$F.button"('Subtask',
+                        [uikey         : 'subtaskbutton',
+                         disableOnClick: true, enabled: false,
+                         clickListener : { sm.execute(Event.Dialog) }])
+                "$F.button"('Cancel',
+                        [uikey         : 'cancelbutton',
+                         disableOnClick: true,
+                         enabled       : false,
+                         clickListener : { sm.execute(Event.Cancel) }])
+                "$F.button"('Save',
+                        [uikey         : 'savebutton',
+                         disableOnClick: true, enabled: false,
+                         clickShortcut : ShortcutAction.KeyCode.ENTER,
+                         styleName     : Reindeer.BUTTON_DEFAULT,
+                         clickListener : { sm.execute(Event.Save) }])
             }
         }
         topComponent
@@ -165,7 +182,8 @@ class TaskTab extends TabBase
     @Override
     protected createmode() {
         projectTree.onEditItem()
-        [tag, estimate, spent, description, supertask, completed, saveButton, cancelButton].each { it.enabled = true }
+        [tag, estimate, spent, description, supertask, completed, saveButton, cancelButton].
+                each { it.enabled = true }
         [editButton, newButton, subtaskButton].each { it.enabled = false }
 //        saveButton.setClickShortcut(ShortcutAction.KeyCode.ENTER)
     }
@@ -281,8 +299,9 @@ class TaskTab extends TabBase
         public Window build() {
             String keyPrefix = "${subkeyPrefix}dialog."
             winBuilder.keyPrefix = keyPrefix
-            window = winBuilder."$C.window"('Subtask anlegen', [spacing: true, margin: true,
-                                                                modal  : true, closable: false]) {
+            window = winBuilder."$C.window"('Subtask anlegen',
+                    [spacing: true, margin: true,
+                     modal  : true, closable: false]) {
                 "$C.vlayout"('top', [spacing: true, margin: true]) {
                     "$F.text"('Aufgabe', [uikey: TAG])
                     "$C.hlayout"('Status', [spacing: true, margin: false]) {
@@ -293,10 +312,14 @@ class TaskTab extends TabBase
                     "$F.text"('aktueller Verbrauch', [uikey: SPENT])
                     "$F.textarea"('Beschreibung', [uikey: DESCRIPTION])
                     "$C.hlayout"([uikey: 'buttonfield', spacing: true]) {
-                        "$F.button"('Cancel', [uikey        : 'cancelbutton', disableOnClick: true, enabled: true,
-                                               clickListener: { sm.execute(Event.Cancel) }])
-                        "$F.button"('Save', [uikey        : 'savebutton', disableOnClick: true, enabled: true,
-                                             clickListener: { sm.execute(Event.Save) }])
+                        "$F.button"('Cancel',
+                                [uikey         : 'cancelbutton',
+                                 disableOnClick: true, enabled: true,
+                                 clickListener : { sm.execute(Event.Cancel) }])
+                        "$F.button"('Save',
+                                [uikey         : 'savebutton',
+                                 disableOnClick: true, enabled: true,
+                                 clickListener : { sm.execute(Event.Save) }])
                     }
                 }
             }
@@ -311,8 +334,6 @@ class TaskTab extends TabBase
             saveButton = dialogComponents."${keyPrefix}savebutton"
             cancelButton = dialogComponents."${keyPrefix}cancelbutton"
             window.center()
-//            window.modal = true
-//            window.setClosable(false)
         }
     }
 

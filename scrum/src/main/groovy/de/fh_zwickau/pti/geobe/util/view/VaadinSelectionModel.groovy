@@ -11,27 +11,27 @@ package de.fh_zwickau.pti.geobe.util.view
  * Created by georg beier on 17.11.2015.
  */
 class VaadinSelectionModel {
-    private Map<String, Set<VaadinSelectionListener>> listeners = new LinkedHashMap<>()
-    private Set<VaadinSelectionKeyListener> keyListeners = new LinkedHashSet<>()
+    private Map<String, Set<VaadinSelectionListener>> keySelectiveListeners = new LinkedHashMap<>()
+    private Set<VaadinSelectionListener> anyKeyListeners = new LinkedHashSet<>()
     private Set<VaadinTreeRootChangeListener> rootChangeListeners = new LinkedHashSet<>()
 
     public void addListenerForKey(VaadinSelectionListener l, String key) {
-        if (!listeners.containsKey(key)) {
-            listeners[key] = new LinkedHashSet<VaadinSelectionListener>()
+        if (!keySelectiveListeners.containsKey(key)) {
+            keySelectiveListeners[key] = new LinkedHashSet<VaadinSelectionListener>()
         }
-        listeners[key].add(l)
+        keySelectiveListeners[key].add(l)
     }
 
     public void removeListenerForKey(VaadinSelectionListener l, String key) {
-        listeners[key]?.remove(l)
+        keySelectiveListeners[key]?.remove(l)
     }
 
-    public void addKeyListener(VaadinSelectionKeyListener keyListener) {
-        keyListeners.add(keyListener)
+    public void addAnyKeyListener(VaadinSelectionListener keyListener) {
+        anyKeyListeners.add(keyListener)
     }
 
-    public void removeKeyListener(VaadinSelectionKeyListener keyListener) {
-        keyListeners.remove(keyListener)
+    public void removeAnyKeyListener(VaadinSelectionKeyListener keyListener) {
+        anyKeyListeners.remove(keyListener)
     }
 
     public void addRootChangeListener(VaadinTreeRootChangeListener changeListener) {
@@ -43,8 +43,8 @@ class VaadinSelectionModel {
     }
 
     public void notifyChange(Map<String, Serializable> rawEvent) {
-            listeners[rawEvent['type']].each { it.onItemSelected(rawEvent) }
-            keyListeners.each { it.onItemKeySelected(rawEvent) }
+            keySelectiveListeners[rawEvent['type']].each { it.onItemSelected(rawEvent) }
+            anyKeyListeners.each { it.onItemSelected(rawEvent) }
     }
 
     public void notifyRootChange(Map<String, Serializable> rawEvent) {

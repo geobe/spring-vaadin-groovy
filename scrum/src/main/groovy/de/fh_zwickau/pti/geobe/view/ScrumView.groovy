@@ -1,7 +1,6 @@
 package de.fh_zwickau.pti.geobe.view
 
 import com.vaadin.annotations.Theme
-import com.vaadin.server.ErrorEvent
 import com.vaadin.server.VaadinRequest
 import com.vaadin.spring.annotation.SpringUI
 import com.vaadin.ui.Component
@@ -9,6 +8,7 @@ import com.vaadin.ui.Notification
 import com.vaadin.ui.TabSheet
 import com.vaadin.ui.UI
 import de.fh_zwickau.pti.geobe.util.view.VaadinSelectionKeyListener
+import de.fh_zwickau.pti.geobe.util.view.VaadinSelectionListener
 import de.geobe.util.vaadin.VaadinBuilder
 import org.springframework.beans.factory.annotation.Autowired
 import org.vaadin.spring.security.util.SecurityExceptionUtils
@@ -22,7 +22,7 @@ import static VaadinBuilder.F
  */
 @SpringUI(path = "")
 @Theme("valo")
-class ScrumView extends UI implements VaadinSelectionKeyListener {
+class ScrumView extends UI implements VaadinSelectionListener {
 
     def VaadinBuilder vaadin
     def widgets = [:]
@@ -78,7 +78,7 @@ class ScrumView extends UI implements VaadinSelectionKeyListener {
         projectTab.init()
         sprintTab.init()
         taskTab.init()
-        projectTree.selectionModel.addKeyListener(this)
+        projectTree.selectionModel.addAnyKeyListener(this)
     }
 
     private void handleError(def event){
@@ -94,7 +94,7 @@ class ScrumView extends UI implements VaadinSelectionKeyListener {
  * @param event id of the selected element, normally its domain class itemId
  */
     @Override
-    void onItemKeySelected(Map<String, Serializable> itemId) {
+    void onItemSelected(Map<String, Serializable> itemId) {
         TabSheet tabs = widgets['tabs']
         switch (itemId['type']) {
             case 'Project':

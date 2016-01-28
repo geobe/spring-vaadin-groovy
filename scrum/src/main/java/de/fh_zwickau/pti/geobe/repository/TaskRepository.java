@@ -1,13 +1,13 @@
 package de.fh_zwickau.pti.geobe.repository;
 
-import de.fh_zwickau.pti.geobe.domain.CompoundTask;
-import de.fh_zwickau.pti.geobe.domain.Subtask;
-import de.fh_zwickau.pti.geobe.domain.Task;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+        import de.fh_zwickau.pti.geobe.domain.CompoundTask;
+        import de.fh_zwickau.pti.geobe.domain.Subtask;
+        import de.fh_zwickau.pti.geobe.domain.Task;
+        import org.springframework.data.jpa.repository.JpaRepository;
+        import org.springframework.data.jpa.repository.Query;
 
-import java.util.Collection;
-import java.util.List;
+        import java.util.Collection;
+        import java.util.List;
 
 /**
  *
