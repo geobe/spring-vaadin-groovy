@@ -20,7 +20,7 @@ import static VaadinBuilder.F
  * The main view class for Scrum UI
  * @author georg beier
  */
-@SpringUI(path = "")
+@SpringUI(path = "/scrum")
 @Theme("valo")
 class ScrumView extends UI implements VaadinSelectionListener {
 

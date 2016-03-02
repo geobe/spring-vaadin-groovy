@@ -9,6 +9,11 @@ import de.fh_zwickau.pti.geobe.service.ProjectService
 import de.fh_zwickau.pti.geobe.service.StartupService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.SpringApplicationConfiguration
+import org.springframework.http.MediaType
+import org.springframework.test.context.web.WebAppConfiguration
+import org.springframework.test.web.servlet.setup.MockMvcBuilders
+import org.springframework.web.context.WebApplicationContext
+import org.vaadin.spring.security.VaadinSecurity
 import spock.lang.Specification
 
 import javax.transaction.Transactional
@@ -28,7 +33,8 @@ class ProjectServiceSpecification extends Specification {
     private SprintRepository sprintRepository
     @Autowired
     private ProjectService projectService
-
+    @Autowired
+    private  VaadinSecurity vaadinSecurity
     Project project
     CompoundTask task
     Subtask stask

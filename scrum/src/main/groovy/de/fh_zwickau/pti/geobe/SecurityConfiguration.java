@@ -89,6 +89,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean(name = VaadinSharedSecurityConfiguration.VAADIN_AUTHENTICATION_SUCCESS_HANDLER_BEAN)
     VaadinAuthenticationSuccessHandler vaadinAuthenticationSuccessHandler(
             HttpService httpService, VaadinRedirectStrategy vaadinRedirectStrategy) {
-        return new VaadinUrlAuthenticationSuccessHandler(httpService, vaadinRedirectStrategy, "/");
+        return new VaadinUrlAuthenticationSuccessHandler(httpService, vaadinRedirectStrategy, "/scrum");
     }
 }

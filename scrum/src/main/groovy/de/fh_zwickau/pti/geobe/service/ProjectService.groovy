@@ -66,7 +66,7 @@ class ProjectService {
         makeQFull(p)
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ProjectDto.QFull createOrUpdateProject(CSet command) {
         Project project
         if (command.id) {
