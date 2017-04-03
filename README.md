@@ -21,4 +21,5 @@ On the [Vaadin4Spring](https://github.com/peholmst/vaadin4spring) website of Pet
 for the security integration are available. But it took me quite some time to get it all working, 
 so I [wrote a bit](http://www.georgbeier.de/tutorials-java-und-mehr/java8-spring-groovy-vaadin/spring-vaadin-security-integration/) 
 about it (at the moment in German).
-
+## Adding Object based Security
+We want to grant users different access rights to project artifacts depending on their project membership and project role.
